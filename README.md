@@ -20,8 +20,8 @@
 
 ## Name
 
-- Maximum of 64 characters per name. The program will deny the whole string if 65 or more characters are entered at once.
-		Do this first.
+- Maximum of 64 characters per name. The program will ignore any excess characters.
+		(DONE) Do this first.
 - Accepts alphabetic chars (diacritics allowed), up to two "inner" spaces, up to two commas, up to three apostrophes, and up to three hyphens.
 		In a copy, remove acceptable characters. Reject if a limit is broken.
 - Other symbols, ASCII, or unicode characters are not allowed.
@@ -35,7 +35,8 @@ _Onwuatuegwu Anikulapo-Kuti Alamieyeseigha_ (41 characters, including two spaces
 
 ## Phone Number
 
-- Maximum of 32 characters per number. The program will deny the whole string if 33 or more characters are entered at once.
+- Maximum of 32 characters per phone number. The program will ignore any excess characters.
 - Accepts Arabic numeric characters, up to one "+", characters resembling "extension" (ext, x...), and up to 5 of a combination of these symbols: ().-/
-		Use regex to allow these things.
+- Deny 555 area code, and research other false numbers.
+		Use regex.
 		Print error based on failure.

@@ -25,13 +25,13 @@ int main()
 			case '0': //exit
 				break;
 			case '1':
-				add("","");
+				add(name,num);
 				break;
 			case '2':
-				deleteByName("");
+				deleteByName(name);
 				break;
 			case '3':
-				deleteByNum("");
+				deleteByNum(num);
 				break;
 			case '4':
 				viewList();
@@ -54,13 +54,24 @@ void menu() {
 	return;
 }
 
-void add(char* name, char* num) { // REGEX!
-	//TODO: name input within while loop
+void add(char* name, char* num) {
 	// use fgets using exam example
 	do {
+		cout << "Please enter a name." << endl;
+		fgets(name,MAX_NAME_CHARS);
+		//NOTE: put next three lines in own function
+		//TODO: regex
+		//TODO: error logic
+		//TODO: pass? return true -> breaks from loop.
 		break;
 	} while(true);
-	//TODO: num input with while loop
+	do {
+		cout << "Please enter a phone number." << endl;
+		fgets(num,MAX_NUM_CHARS);
+		//TODO: call validation function here
+		//NOTE: TRUE should break this loop.
+		break;
+	} while(true);
 }
 
 void deleteByName(char* name) {}
