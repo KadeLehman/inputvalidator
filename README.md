@@ -35,6 +35,7 @@ _Onwuatuegwu Anikulapo-Kuti Alamieyeseigha_ (41 characters, including two spaces
 
 ## Phone Number
 
+- Maximum of 32 characters per number. The program will deny the whole string if 33 or more characters are entered at once.
 - Accepts Arabic numeric characters, up to one "+", characters resembling "extension" (ext, x...), and up to 5 of a combination of these symbols: ().-/
 		Use regex to allow these things.
 		Print error based on failure.

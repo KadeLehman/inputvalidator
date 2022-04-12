@@ -1,19 +1,22 @@
 #include <iostream>
 #include <map>
-#include <string>
+#define MAX_NAME_CHARS 64
+#define MAX_NUM_CHARS 32
 using namespace std;
 
-map<string,string> db;
+map<char*,char*> db;
 
 void menu();
-void add(string name, string num); //regex
-void deleteByName(string name); //regex
-void deleteByNum(string num); //regex
+void add(char* name, char* num); //regex
+void deleteByName(char* name); //regex
+void deleteByNum(char* num); //regex
 void viewList();
 
 int main()
 {
 	//TODO: ingest file automatically
+	char name[MAX_NAME_CHARS];
+	char num[MAX_NUM_CHARS];
 	char choice = '0';
 	do {
 		menu();
@@ -51,12 +54,15 @@ void menu() {
 	return;
 }
 
-
-void add(string name, string num) { // REGEX!
+void add(char* name, char* num) { // REGEX!
 	//TODO: name input within while loop
+	// use fgets using exam example
+	do {
+		break;
+	} while(true);
 	//TODO: num input with while loop
 }
 
-void deleteByName(string name) {}
-void deleteByNum(string num) {}
+void deleteByName(char* name) {}
+void deleteByNum(char* num) {}
 void viewList() {}
