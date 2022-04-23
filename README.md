@@ -25,7 +25,7 @@
 - Accepts alphabetic chars (diacritics allowed), up to two "inner" spaces, up to two commas, up to three apostrophes, and up to three hyphens.
 		In a copy, remove acceptable characters. Reject if a limit is broken.
 - Other symbols, ASCII, or unicode characters are not allowed.
-		If any other chars left, reject and print error. "The only characters allowed are letters, spaces, commas, apostrophes, and hyphens. Please try again."
+		If any other chars left, reject and print error. "The only characters allowed for a name are letters, spaces, commas, apostrophes, and hyphens. Please try again."
 - Name must not start with a non-alphabetic character (so no space or other char). However, trailing spaces are allowed, not counted, and will be truncated.
 		Reject if first sentence. Truncate spaces if any.
 
@@ -37,6 +37,6 @@ _Onwuatuegwu Anikulapo-Kuti Alamieyeseigha_ (41 characters, including two spaces
 
 - Maximum of 32 characters per phone number. The program will ignore any excess characters.
 - Accepts Arabic numeric characters, up to one "+", characters resembling "extension" (ext, x...), and up to 5 of a combination of these symbols: ().-/
-- Deny 555 area code, and research other false numbers.
+- Deny 555 area code, and research other fake ones.
 		Use regex.
 		Print error based on failure.

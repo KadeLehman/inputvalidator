@@ -7,10 +7,12 @@ using namespace std;
 map<char*,char*> db;
 
 void menu();
-void add(char* name, char* num); //regex
-void deleteByName(char* name); //regex
-void deleteByNum(char* num); //regex
+void add(char* name, char* num);
+void deleteByName(char* name);
+void deleteByNum(char* num);
 void viewList();
+bool validateName(char* name);
+bool validateNum(char* num);
 
 int main()
 {
@@ -59,21 +61,29 @@ void add(char* name, char* num) {
 	do {
 		cout << "Please enter a name." << endl;
 		fgets(name,MAX_NAME_CHARS);
-		//NOTE: put next three lines in own function
-		//TODO: regex
-		//TODO: error logic
-		//TODO: pass? return true -> breaks from loop.
-		break;
+		if(validateName(name)) { break; }
 	} while(true);
 	do {
 		cout << "Please enter a phone number." << endl;
 		fgets(num,MAX_NUM_CHARS);
-		//TODO: call validation function here
-		//NOTE: TRUE should break this loop.
-		break;
+		if(validateNum(num)) { break; }
 	} while(true);
 }
 
 void deleteByName(char* name) {}
 void deleteByNum(char* num) {}
 void viewList() {}
+
+bool validateName(char* name) {
+	//TODO: regex
+	//TODO: error logic (print appropriate error if any)
+	//TODO: pass? return true -> breaks from loop.
+	return false;
+}
+
+bool validateNum(char* num) {
+	//TODO: regex
+	//TODO: error logic (print appropriate error if any)
+	//TODO: pass? return true -> breaks from loop.
+	return false;
+}
