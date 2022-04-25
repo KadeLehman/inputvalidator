@@ -75,15 +75,19 @@ void deleteByNum(char* num) {}
 void viewList() {}
 
 bool validateName(char* name) {
-	//TODO: regex
-	//TODO: error logic (print appropriate error if any)
+	regex e("(?!\\s)");
+	match_flag_type f = regex_constants::match_any | regex_constants::match_not_null;
+	bool matching = regex_match(name,e,f);
+	//TODO: print error msg if failed
 	//TODO: pass? return true -> breaks from loop.
-	return false;
+	return matching;
 }
 
 bool validateNum(char* num) {
-	//TODO: regex
-	//TODO: error logic (print appropriate error if any)
+	regex e("(?!\\s)");
+	match_flag_type f = regex_constants::match_any | regex_constants::match_not_null;
+	bool matching = regex_match(num,e,f);
+	//TODO: print error msg if failed
 	//TODO: pass? return true -> breaks from loop.
-	return false;
+	return matching;
 }
