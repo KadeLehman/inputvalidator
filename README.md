@@ -25,9 +25,9 @@
 - Accepts alphabetic chars (diacritics allowed), up to two "inner" spaces, up to two commas, up to three apostrophes, and up to three hyphens.
 		Use regex kinda like I did for phone number.
 - Line terminators or other symbols/ASCII/unicode characters are not allowed.
-		(Make regex whitelist in nature)
-- Name must not start with a non-alphabetic character (so no space or other char). However, trailing spaces are allowed, not counted, and will be truncated.
-		Reject if first sentence. Truncate spaces if any.
+		(Make regex whitelist in nature.)
+- Name must not start with a non-alphabetic character (so no space or other char).
+		Use escape char for "alphabetic".
 
 ### Example of long name
 
@@ -39,4 +39,4 @@ _Onwuatuegwu Anikulapo-Kuti Alamieyeseigha_ (41 characters, including two spaces
 - Accepts numbers, up to one "+" (international dialling prefix), optional parenthesis for area code, characters resembling "extension" (ext, x...), and these other symbols in the following quotes: ".-/"
 - Due to the whitelist nature of this regex, line terminators and other symbols/ASCII/unicode characters are not allowed.
 - Deny area codes 001, 555 (invalid) and 000 (telemarketer/VoIP).
-- Name must not start with a non-alphabetic character (so no space or other char).
+- Leading spaces are forbidden.
