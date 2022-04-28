@@ -23,9 +23,9 @@
 - Maximum of 64 characters per name. The program will ignore any excess characters.
 		(DONE) Do this first.
 - Accepts alphabetic chars (diacritics allowed), up to two "inner" spaces, up to two commas, up to three apostrophes, and up to three hyphens.
-		In a copy, remove acceptable characters. Reject if a limit is broken.
-- Other symbols, ASCII, or unicode characters are not allowed.
-		If any other chars left, reject and print error. "The only characters allowed for a name are letters, spaces, commas, apostrophes, and hyphens. Please try again."
+		Use regex kinda like I did for phone number.
+- Line terminators or other symbols/ASCII/unicode characters are not allowed.
+		(Make regex whitelist in nature)
 - Name must not start with a non-alphabetic character (so no space or other char). However, trailing spaces are allowed, not counted, and will be truncated.
 		Reject if first sentence. Truncate spaces if any.
 
@@ -36,7 +36,7 @@ _Onwuatuegwu Anikulapo-Kuti Alamieyeseigha_ (41 characters, including two spaces
 ## Phone Number
 
 - Maximum of 32 characters per phone number. The program will ignore any excess characters.
-- Accepts Arabic numeric characters, up to one "+", characters resembling "extension" (ext, x...), and up to 5 of a combination of these symbols: ().-/
-- Deny 555 area code, and research other fake ones.
-		Use regex.
-		Print error based on failure.
+- Accepts numbers, up to one "+" (international dialling prefix), optional parenthesis for area code, characters resembling "extension" (ext, x...), and these other symbols in the following quotes: ".-/"
+- Due to the whitelist nature of this regex, line terminators and other symbols/ASCII/unicode characters are not allowed.
+- Deny area codes 001, 555 (invalid) and 000 (telemarketer/VoIP).
+- Name must not start with a non-alphabetic character (so no space or other char).

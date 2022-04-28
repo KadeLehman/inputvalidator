@@ -84,7 +84,7 @@ bool validateName(char* name) {
 }
 
 bool validateNum(char* num) {
-	regex e("(?!\\s)");
+	regex e("(?!\\s)\\+?\\(?(?!000|001\\)|555|1[\\.-/ ]?555|1-555)\\d+\\)?(?:[\\.-/ ]?\\d+){1,4}(?:(?:x|ex|ext|xt)?(?:[\\.-/ ]?\\d{1-4})?)?");
 	match_flag_type f = regex_constants::match_any | regex_constants::match_not_null;
 	bool matching = regex_match(num,e,f);
 	//TODO: print error msg if failed
