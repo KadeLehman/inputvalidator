@@ -1,30 +1,32 @@
 #include <iostream>
+#include <string>
 #include <regex>
 #include <map>
 #define MAX_NAME_CHARS 64
-#define MAX_NUM_CHARS 32
+#define MAX_NUM_CHARS 64
 using namespace std;
 using std::regex;
 
-map<char*,char*> db;
+map<string,string> db;
 
 void menu();
-void add(char* name, char* num);
-void deleteByName(char* name);
-void deleteByNum(char* num);
+void add(string& name, string& num);
+void deleteByName(string& name);
+void deleteByNum(string& num);
 void viewList();
-bool validateName(char* name);
-bool validateNum(char* num);
+bool validateName(string& name);
+bool validateNum(string& num);
 
 int main()
 {
 	//TODO: ingest file automatically
-	char name[MAX_NAME_CHARS];
-	char num[MAX_NUM_CHARS];
+	string name("");
+	string num("");
 	char choice = '0';
 	do {
 		menu();
-		getline(cin,choice);
+		cin.ignore();
+		cin >> choice;
 		switch(choice) {
 			case '0': //exit
 				break;
@@ -58,7 +60,7 @@ void menu() {
 	return;
 }
 
-void add(char* name, char* num) {
+void add(string& name, string& num) {
 
 	/*
 	cout << "Please enter a name." << endl;
@@ -69,23 +71,21 @@ void add(char* name, char* num) {
 	*/
 	
 	cout << "Please enter a phone number." << endl;
-	char numCopy[MAX_NUM_CHARS];
 	do {
 		getline(cin,num);
-		strncpy(numCopy,num,MAX_NUM_CHARS);
-		if(validateNum(numCopy)) { break; }
+		num = num.substr(0,MAX_NUM_CHARS);
+		if(validateNum(num)) { break; }
 	} while(true);
+	cout << num << "<-number returned" << endl;
 	// TODO: input into map
-	num = numCopy;
-	cout << numCopy << endl;
 	return;
 }
 
-void deleteByName(char* name) {}
-void deleteByNum(char* num) {}
+void deleteByName(string& name) {}
+void deleteByNum(string& num) {}
 void viewList() {}
 
-bool validateName(char* name) {
+bool validateName(string& name) {
 	regex e("(?!\\s)");
 	regex_constants::match_flag_type f = regex_constants::match_any | regex_constants::match_not_null;
 	bool matching = regex_match(name,e,f);
@@ -95,8 +95,8 @@ bool validateName(char* name) {
 	return matching;
 }
 
-bool validateNum(char* num) {
-	regex e("(?!\\s)\\+?\\(?(?!000|001\\)|555|1[\\.\\-/ ]?555|1-555)\\d+\\)?(?:[\\.\\-/ ]?\\d+){1,4}(?:[\\.\\-/ ]?(?:ext|ex|xt|x)?(?:[\\.\\-/ ]?\d{1,4})?)?");
+bool validateNum(string& num) {
+	regex e("(?!\\s)\\+?\\(?(?!000|001\\)|555|1[\\.\\-/ ]?555|1-555)\\d+\\)?(?:[\\.\\-/ ]?\\d+){1,4}(?:[\\.\\-/ ]?(?:ext|ex|xt|x)?(?:[\\.\\-/ ]?\\d{1,4})?)?");
 	regex_constants::match_flag_type f = regex_constants::match_any | regex_constants::match_not_null;
 	bool matching = regex_match(num,e,f);
 	if(!matching) {
