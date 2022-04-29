@@ -1,8 +1,10 @@
 #include <iostream>
+#include <regex>
 #include <map>
 #define MAX_NAME_CHARS 64
 #define MAX_NUM_CHARS 32
 using namespace std;
+using std::regex;
 
 map<char*,char*> db;
 
@@ -58,18 +60,25 @@ void menu() {
 
 void add(char* name, char* num) {
 
+	/*
 	cout << "Please enter a name." << endl;
 	do {
 		fgets(name,MAX_NAME_CHARS);
 		if(validateName(name)) { break; }
 	} while(true);
+	*/
 	
 	cout << "Please enter a phone number." << endl;
+	char numCopy[MAX_NUM_CHARS];
 	do {
-		fgets(num,MAX_NUM_CHARS);
-		if(validateNum(num)) { break; }
+		cin >> num;
+		strncpy(numCopy,num,MAX_NUM_CHARS);
+		if(validateNum(numCopy)) { break; }
 	} while(true);
 	// TODO: input into map
+	num = numCopy;
+	cout << numCopy << endl;
+	return;
 }
 
 void deleteByName(char* name) {}
@@ -78,7 +87,7 @@ void viewList() {}
 
 bool validateName(char* name) {
 	regex e("(?!\\s)");
-	match_flag_type f = regex_constants::match_any | regex_constants::match_not_null;
+	regex_constants::match_flag_type f = regex_constants::match_any | regex_constants::match_not_null;
 	bool matching = regex_match(name,e,f);
 	if(!matching) {
 		cout << "Invalid name. Please try again." << endl;
@@ -88,7 +97,7 @@ bool validateName(char* name) {
 
 bool validateNum(char* num) {
 	regex e("(?!\\s)\\+?\\(?(?!000|001\\)|555|1[\\.-/ ]?555|1-555)\\d+\\)?(?:[\\.-/ ]?\\d+){1,4}(?:(?:x|ex|ext|xt)?(?:[\\.-/ ]?\\d{1-4})?)?");
-	match_flag_type f = regex_constants::match_any | regex_constants::match_not_null;
+	regex_constants::match_flag_type f = regex_constants::match_any | regex_constants::match_not_null;
 	bool matching = regex_match(num,e,f);
 	if(!matching) {
 		cout << "Invalid number. Please try again." << endl;
