@@ -22,10 +22,12 @@ int main()
 	//TODO: ingest file automatically
 	string name("");
 	string num("");
+	string choice_str("");
 	char choice = '0';
 	do {
 		menu();
-		cin >> choice;
+		getline(cin,choice_str);
+		choice = choice_str.front();
 		switch(choice) {
 			case '0': //exit
 				break;
@@ -70,7 +72,6 @@ void add(string& name, string& num) {
 	*/
 	
 	cout << "Please enter a phone number." << endl;
-	cin.ignore();
 	do {
 		getline(cin,num);
 		num = num.substr(0,MAX_NUM_CHARS);
