@@ -25,7 +25,6 @@ int main()
 	char choice = '0';
 	do {
 		menu();
-		cin.ignore();
 		cin >> choice;
 		switch(choice) {
 			case '0': //exit
@@ -71,6 +70,7 @@ void add(string& name, string& num) {
 	*/
 	
 	cout << "Please enter a phone number." << endl;
+	cin.ignore();
 	do {
 		getline(cin,num);
 		num = num.substr(0,MAX_NUM_CHARS);
