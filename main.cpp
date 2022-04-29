@@ -57,17 +57,19 @@ void menu() {
 }
 
 void add(char* name, char* num) {
-	// use fgets using exam example
+
+	cout << "Please enter a name." << endl;
 	do {
-		cout << "Please enter a name." << endl;
 		fgets(name,MAX_NAME_CHARS);
 		if(validateName(name)) { break; }
 	} while(true);
+	
+	cout << "Please enter a phone number." << endl;
 	do {
-		cout << "Please enter a phone number." << endl;
 		fgets(num,MAX_NUM_CHARS);
 		if(validateNum(num)) { break; }
 	} while(true);
+	// TODO: input into map
 }
 
 void deleteByName(char* name) {}
@@ -78,8 +80,9 @@ bool validateName(char* name) {
 	regex e("(?!\\s)");
 	match_flag_type f = regex_constants::match_any | regex_constants::match_not_null;
 	bool matching = regex_match(name,e,f);
-	//TODO: print error msg if failed
-	//TODO: pass? return true -> breaks from loop.
+	if(!matching) {
+		cout << "Invalid name. Please try again." << endl;
+	}
 	return matching;
 }
 
@@ -87,7 +90,8 @@ bool validateNum(char* num) {
 	regex e("(?!\\s)\\+?\\(?(?!000|001\\)|555|1[\\.-/ ]?555|1-555)\\d+\\)?(?:[\\.-/ ]?\\d+){1,4}(?:(?:x|ex|ext|xt)?(?:[\\.-/ ]?\\d{1-4})?)?");
 	match_flag_type f = regex_constants::match_any | regex_constants::match_not_null;
 	bool matching = regex_match(num,e,f);
-	//TODO: print error msg if failed
-	//TODO: pass? return true -> breaks from loop.
+	if(!matching) {
+		cout << "Invalid number. Please try again." << endl;
+	}
 	return matching;
 }
