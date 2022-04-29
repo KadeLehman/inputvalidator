@@ -24,7 +24,7 @@ int main()
 	char choice = '0';
 	do {
 		menu();
-		cin >> choice;
+		getline(cin,choice);
 		switch(choice) {
 			case '0': //exit
 				break;
@@ -71,7 +71,7 @@ void add(char* name, char* num) {
 	cout << "Please enter a phone number." << endl;
 	char numCopy[MAX_NUM_CHARS];
 	do {
-		cin >> num;
+		getline(cin,num);
 		strncpy(numCopy,num,MAX_NUM_CHARS);
 		if(validateNum(numCopy)) { break; }
 	} while(true);
@@ -96,7 +96,7 @@ bool validateName(char* name) {
 }
 
 bool validateNum(char* num) {
-	regex e("(?!\\s)\\+?\\(?(?!000|001\\)|555|1[\\.-/ ]?555|1-555)\\d+\\)?(?:[\\.-/ ]?\\d+){1,4}(?:(?:x|ex|ext|xt)?(?:[\\.-/ ]?\\d{1-4})?)?");
+	regex e("(?!\\s)\\+?\\(?(?!000|001\\)|555|1[\\.-/ ]?555|1-555)\\d+\\)?(?:[\\.-/ ]?\\d+){1,4}(?:(?:x|ex|ext|xt)?(?:[\\.-/ ]?\\d{1,4})?)?");
 	regex_constants::match_flag_type f = regex_constants::match_any | regex_constants::match_not_null;
 	bool matching = regex_match(num,e,f);
 	if(!matching) {
