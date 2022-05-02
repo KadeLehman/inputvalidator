@@ -22,7 +22,7 @@
 
 - Between 2 and 41 characters per name. The program will reject the name otherwise.
 - Leading spaces are forbidden.
-- Accepts alphabetic characters, up to two "inner" spaces, up to one comma, up to three apostrophes, and up to three hyphens.
+- Accepts alphabetic characters, up to two "inner" spaces, up to two commas, up to three apostrophes, and up to three hyphens.
 - Due to the whitelist nature of this regex, line terminators or other symbols/ASCII/unicode characters (including periods) are not allowed.
 		
 ### Example of short name

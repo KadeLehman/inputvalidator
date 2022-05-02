@@ -63,13 +63,19 @@ void menu() {
 
 void add(string& name, string& num) {
 
-	/*
+	/* do {
+		fgets(name,MAX_NAME_CHARS,stdin);
+		if(validateName(name)) { break; }
+	} while(true); */
+	
 	cout << "Please enter a name." << endl;
 	do {
-		fgets(name,MAX_NAME_CHARS);
+		getline(cin,name);
+		name = name.substr(0,MAX_NAME_CHARS);
 		if(validateName(name)) { break; }
 	} while(true);
-	*/
+	cout << name << "<-name returned" << endl;
+	// TODO: input name into map
 	
 	cout << "Please enter a phone number." << endl;
 	do {
@@ -78,7 +84,7 @@ void add(string& name, string& num) {
 		if(validateNum(num)) { break; }
 	} while(true);
 	cout << num << "<-number returned" << endl;
-	// TODO: input into map
+	// TODO: input num into map
 	return;
 }
 
