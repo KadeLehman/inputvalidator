@@ -2,7 +2,7 @@
 #include <string>
 #include <regex>
 #include <map>
-#define MAX_NAME_CHARS 64
+#define MAX_NAME_CHARS 43
 #define MAX_NUM_CHARS 24
 using namespace std;
 using std::regex;
@@ -87,7 +87,7 @@ void deleteByNum(string& num) {}
 void viewList() {}
 
 bool validateName(string& name) {
-	regex e("(?!\\s)");
+	regex e("(?=.{2,})(?!.{42,})(?!\\s).*");
 	regex_constants::match_flag_type f = regex_constants::match_any | regex_constants::match_not_null;
 	bool matching = regex_match(name,e,f);
 	if(!matching) {

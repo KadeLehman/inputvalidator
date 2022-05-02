@@ -20,22 +20,22 @@
 
 ## Name
 
-- Maximum of 64 characters per name. The program will ignore any excess characters.
-		(DONE) Do this first.
-- Name must not start with a non-alphabetic character (so no space or other char).
-		Use escape char for "alphabetic".
-- Accepts alphabetic chars (diacritics allowed), up to two "inner" spaces, up to two commas, up to three apostrophes, and up to three hyphens.
-		Use regex kinda like I did for phone number.
-- Line terminators or other symbols/ASCII/unicode characters are not allowed.
-		(Make regex whitelist in nature.)
+- Between 2 and 41 characters per name. The program will reject the name otherwise.
+- Leading spaces are forbidden.
+- Accepts alphabetic characters, up to two "inner" spaces, up to one comma, up to three apostrophes, and up to three hyphens.
+- Due to the whitelist nature of this regex, line terminators or other symbols/ASCII/unicode characters (including periods) are not allowed.
+		
+### Example of short name
+
+_Vu_ is a real name with two characters. Any shorter is unreasonable.
 
 ### Example of long name
 
-_Onwuatuegwu Anikulapo-Kuti Alamieyeseigha_ (41 characters, including two spaces). These three words are all common African **surnames**, not first names, but this is an extreme example that will be a little more or even to a __reasonable number__ of chars for a name with realistic first and middle names.
+_Onwuatuegwu Anikulapo-Kuti Alamieyeseigha_ (41 characters, including two spaces). These three words are all common African **surnames**, not first names, but this is an extreme example that will be a little longer than a __reasonable number__ of chars for a name with a realistic first, middle, and last name.
 
 ## Phone Number
 
-- Maximum of 32 characters per phone number. The program will ignore any excess characters.
+- Maximum of 22 characters per phone number. The program will reject the number otherwise.
 - Leading spaces are forbidden.
 - Accepts numbers, up to one "+" (international dialling prefix), optional parenthesis for area code, characters resembling "extension" (ext, x...), and these other symbols in the following quotes: ".-/ "
 - Due to the whitelist nature of this regex, line terminators and other symbols/ASCII/unicode characters are not allowed.
