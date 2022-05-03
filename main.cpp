@@ -63,8 +63,10 @@ void menu() {
 
 void add(string& name, string& num) {
 
-	/* do {
-		fgets(name,MAX_NAME_CHARS,stdin);
+	/* TODO: manually create file with test cases
+	/* TODO: file input
+	do {
+		//TODO: stringstream with pipe delim
 		if(validateName(name)) { break; }
 	} while(true); */
 	
@@ -93,7 +95,7 @@ void deleteByNum(string& num) {}
 void viewList() {}
 
 bool validateName(string& name) {
-	regex e("(?=.{2,})(?!.{42,})(?!\\s).*");
+	regex e("(?=.{2,})(?!.{42,})(?!\\s)[a-zA-Z]+(?:,? ?'?-?[a-zA-Z']+,?)(?: ?'?-?[a-zA-Z]+){0,2}");
 	regex_constants::match_flag_type f = regex_constants::match_any | regex_constants::match_not_null;
 	bool matching = regex_match(name,e,f);
 	if(!matching) {
