@@ -87,9 +87,9 @@ void add(string& name, string& num) {
 	cout << num << "<-number returned" << endl;
 	
 	// Insert data into database
+	// TODO: try-catch block to prevent crash upon emplace error.
 	db.emplace(name,num);
-	cout << "Successfully inserted name-phone pair into database." << endl << endl;
-	//potential TODO: try-catch block that asks
+	cout << "Successfully inserted entry." << endl << endl;
 	return;
 }
 
@@ -107,6 +107,10 @@ void deleteByName(string& name) {
 	if(got == db.end()) {
 		cout << "Name not found. Please enter the name exactly as displayed in the database." << endl;
 	}
+	else {
+		db.erase(name);
+		cout << "Successfully deleted entry." << endl;
+	}
 	return;
 }
 
@@ -116,11 +120,16 @@ void deleteByNum(string& num) {
 }
 
 void viewList() {
+	if(db.empty()) {
+		cout << endl << "The database is empty." << endl << endl;
+		return;
+	}
 	cout << endl << "DATABASE:" << endl << endl;
 	for(auto& entry : db) {
 		cout << entry.first << "|" << entry.second << endl;
 	}
 	cout << endl;
+	return;
 }
 
 bool validateName(string& name) {
