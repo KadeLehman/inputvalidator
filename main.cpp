@@ -88,11 +88,32 @@ void add(string& name, string& num) {
 	
 	// Insert data into database
 	db.emplace(name,num);
+	cout << "Successfully inserted name-phone pair into database." << endl << endl;
+	//potential TODO: try-catch block that asks
 	return;
 }
 
-void deleteByName(string& name) {}
-void deleteByNum(string& num) {}
+void deleteByName(string& name) {
+
+	cout << "Please enter the name for the entry you wish to delete." << endl;
+	do {
+		getline(cin,name);
+		name = name.substr(0,MAX_NAME_CHARS);
+		if(validateName(name)) { break; }
+	} while(true);
+	cout << name << "<-name returned" << endl;
+
+	unordered_map<string,string>::const_iterator got = db.find(name);
+	if(got == db.end()) {
+		cout << "Name not found. Please enter the name exactly as displayed in the database." << endl;
+	}
+	return;
+}
+
+void deleteByNum(string& num) {
+	//TODO
+	return;
+}
 
 void viewList() {
 	cout << endl << "DATABASE:" << endl << endl;
