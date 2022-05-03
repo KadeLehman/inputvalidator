@@ -1,13 +1,13 @@
 #include <iostream>
 #include <string>
 #include <regex>
-#include <map>
+#include <unordered_map>
 #define MAX_NAME_CHARS 43
 #define MAX_NUM_CHARS 24
 using namespace std;
 using std::regex;
 
-map<string,string> db;
+unordered_map<string,string> db;
 
 void menu();
 void add(string& name, string& num);
@@ -77,7 +77,6 @@ void add(string& name, string& num) {
 		if(validateName(name)) { break; }
 	} while(true);
 	cout << name << "<-name returned" << endl;
-	// TODO: input name into map
 	
 	cout << "Please enter a phone number." << endl;
 	do {
@@ -86,13 +85,22 @@ void add(string& name, string& num) {
 		if(validateNum(num)) { break; }
 	} while(true);
 	cout << num << "<-number returned" << endl;
-	// TODO: input num into map
+	
+	// Insert data into database
+	db.emplace(name,num);
 	return;
 }
 
 void deleteByName(string& name) {}
 void deleteByNum(string& num) {}
-void viewList() {}
+
+void viewList() {
+	cout << endl << "DATABASE:" << endl << endl;
+	for(auto& entry : db) {
+		cout << entry.first << "|" << entry.second << endl;
+	}
+	cout << endl;
+}
 
 bool validateName(string& name) {
 	regex e("(?=.{2,})(?!.{42,})(?!\\s)[a-zA-Z]+(?:,? ?'?-?[a-zA-Z']+,?)(?: ?'?-?[a-zA-Z]+){0,2}");

@@ -74,6 +74,7 @@ I had less time to polish the name regex since I created the phone number regex 
 - Alphabetic characters only include "A through Z" case-insensitive. No diacritics such as the squiggly n in "jalepeno" and accent marks on vowels are allowed.
 - I have not tested many more possible inputs and my logic is not as clean and all-encompassing as my phone number regex logic. You may encounter some unexpected accepts and rejects since my name-regex is rather generalized to make my test cases work.
 - Due to this generality, "Smith, John, Michael" is valid even though it is a confusing, ambiguous grouping of the parts of this person's name. It is intended as Last, First, Middle, but this is not immediately obvious.
+- I noticed after I made my regex that the project instructions specify that a full name should be supplied. My regex will accept single names, which is not following this instruction, so ideally this would need to be changed before putting the code into production (so people cannot lazily type a first name, then others cannot supply that duplicate name).
 
 ## Phone Number
 
