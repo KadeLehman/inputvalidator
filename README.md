@@ -41,7 +41,7 @@ _Onwuatuegwu Anikulapo-Kuti Alamieyeseigha_ (41 characters, including two spaces
 - Ronald McDonald
 - O'Neal, Smith
 - Smith O'Neal
-- John 
+- John
 - John-Doe, Smith
 - Smith, John M
 - Smith, John Michael
@@ -52,9 +52,9 @@ _Onwuatuegwu Anikulapo-Kuti Alamieyeseigha_ (41 characters, including two spaces
 ### Invalid names
 
 - Onwuatuegwuinteresting Anikulapo-Kuti Alamieyekhansecurity
--    Leading Spaces
-- Trailing Spaces   
-- TooMuch  InnerSpacing
+- _Leading Space
+- Trailing Spaces__
+- TooMuch__InnerSpacing
 - John-Mark-Luke-Ben Sean-Connor-Jacob-Riley-Franklin
 - Luke "Warm" Water
 - Mr. Refrigerator, Period.
