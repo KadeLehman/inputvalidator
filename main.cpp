@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <string>
 #include <regex>
 #include <unordered_map>
@@ -10,16 +11,18 @@ using std::regex;
 unordered_map<string,string> db;
 
 void menu();
+void ingestFile();
 void add(string& name, string& num);
 void deleteByName(string& name);
 void deleteByNum(string& num);
 void viewList();
-bool validateName(string& name);
-bool validateNum(string& num);
+bool validateName(string& name, bool fromFile);
+bool validateNum(string& num, bool fromFile);
 
 int main()
 {
-	//TODO: ingest file automatically
+	// Read file and show menu.
+	ingestFile();
 	string name("");
 	string num("");
 	string choice_str("");
@@ -61,30 +64,74 @@ void menu() {
 	return;
 }
 
-void add(string& name, string& num) {
+void ingestFile() {
 
-	/* TODO: manually create file with test cases
-	/* TODO: file input
-	do {
-		//TODO: stringstream with pipe delim
-		if(validateName(name)) { break; }
-	} while(true); */
+	// Attempt to open file.
+	ifstream ifs("input.txt");
+	if(!ifs.is_open()) {
+		cout << endl << "No file named \"input.txt\" found." << endl << endl;
+		return;
+	}
 	
+	// Ingest file into database.
+	char str[256];
+	bool nameToken(true);
+	bool pairValid(true);
+    while (ifs.getline(str, 256)) {
+    
+    	// Attempt name input.
+    	string name(str);
+    	if(nameToken) {
+			name = name.substr(0,MAX_NAME_CHARS);
+			if(!validateName(name,true)) {
+				cout << "Line n failed." << endl;
+				pairValid = false;
+			}
+			nameToken = !nameToken;
+			continue;
+		}
+		
+		// Attempt number input.
+		string num(str);
+		num = num.substr(0,MAX_NUM_CHARS);
+		if(!validateNum(num,true)) {
+			cout << "Line n failed validation." << endl;
+			pairValid = false;
+		}
+		nameToken = !nameToken;
+		
+		// If valid, insert pair into database
+		if(pairValid) {
+			cout << "Line n passed." << endl;
+			db.emplace(name,num);
+		}
+		pairValid = true;
+    }
+    
+    // Close file.
+	ifs.close();
+	return;
+}
+
+void add(string& name, string& num) {
+	
+	// Ask user to enter name.
 	cout << endl << "Please enter a name." << endl;
 	do {
 		getline(cin,name);
 		name = name.substr(0,MAX_NAME_CHARS);
-		if(validateName(name)) { break; }
+		if(validateName(name,false)) { break; }
 	} while(true);
 	
+	// Ask user to enter phone number.
 	cout << endl << "Please enter a phone number." << endl;
 	do {
 		getline(cin,num);
 		num = num.substr(0,MAX_NUM_CHARS);
-		if(validateNum(num)) { break; }
+		if(validateNum(num,false)) { break; }
 	} while(true);
 	
-	// Insert data into database
+	// Insert data into database.
 	db.emplace(name,num);
 	cout << "Successfully inserted entry." << endl << endl;
 	return;
@@ -92,13 +139,15 @@ void add(string& name, string& num) {
 
 void deleteByName(string& name) {
 
+	// Ask user to enter name.
 	cout << "Please enter the name for the entry you wish to delete." << endl;
 	do {
 		getline(cin,name);
 		name = name.substr(0,MAX_NAME_CHARS);
-		if(validateName(name)) { break; }
+		if(validateName(name,false)) { break; }
 	} while(true);
 
+	// Delete entry if supplied name is found.
 	unordered_map<string,string>::const_iterator got = db.find(name);
 	if(got == db.end()) {
 		cout << "Name not found. Please enter the name exactly as displayed in the database." << endl << endl;
@@ -111,13 +160,16 @@ void deleteByName(string& name) {
 }
 
 void deleteByNum(string& num) {
+
+	// Ask user to enter phone number.
 	cout << "Please enter the phone number for the entry you wish to delete." << endl;
 	do {
 		getline(cin,num);
 		num = num.substr(0,MAX_NUM_CHARS);
-		if(validateNum(num)) { break; }
+		if(validateNum(num,false)) { break; }
 	} while(true);
 
+	// Delete entry if supplied number is found.
 	for(auto& entry : db) {
 		if(entry.second == num) {
 			db.erase(entry.first);
@@ -130,6 +182,7 @@ void deleteByNum(string& num) {
 }
 
 void viewList() {
+	// Print database contents.
 	if(db.empty()) {
 		cout << endl << "The database is empty." << endl << endl;
 		return;
@@ -142,21 +195,23 @@ void viewList() {
 	return;
 }
 
-bool validateName(string& name) {
+bool validateName(string& name, bool fromFile) {
+	// Test inputted name against regular expression.
 	regex e("(?=.{2,})(?!.{42,})(?!\\s)[a-zA-Z]+(?:,? ?'?-?[a-zA-Z']+,?)(?: ?'?-?[a-zA-Z]+){0,2}");
 	regex_constants::match_flag_type f = regex_constants::match_any | regex_constants::match_not_null;
 	bool matching = regex_match(name,e,f);
-	if(!matching) {
+	if(!matching && !fromFile) {
 		cout << "Invalid name. Please try again." << endl;
 	}
 	return matching;
 }
 
-bool validateNum(string& num) {
+bool validateNum(string& num, bool fromFile) {
+	// Test inputted number against regular expression.
 	regex e("(?=.{7,})(?!.{23,})(?!\\s)\\+?\\(?(?!0{1,3}|001\\)|555|1[\\.\\-/ ]?555|1?[\\.\\-/ ]?800)\\d+\\)?(?:\\ ?\\(?[\\.\\-/ ]?\\d+\\)?)(?:[\\.\\-/ ]?\\d+){0,3}(?:[\\.\\-/ ]?(?:ext|ex|e|xt|x)?(?:[\\.\\-/ ]?\\d{1,4})?)?");
 	regex_constants::match_flag_type f = regex_constants::match_any | regex_constants::match_not_null;
 	bool matching = regex_match(num,e,f);
-	if(!matching) {
+	if(!matching && !fromFile) {
 		cout << "Invalid number. Please try again." << endl;
 	}
 	return matching;

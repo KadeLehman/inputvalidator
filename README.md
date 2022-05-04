@@ -2,18 +2,20 @@
 
 ## Initial Steps
 
-- open terminal
-- navigate to project folder
-- run "g++ main.cpp"
-- run "./a.out"
+- Treat file as shown in next section ("File Input").
+- Open terminal.
+- Navigate to project folder.
+- Run "g++ main.cpp".
+- Run "./a.out".
 
-## File Input
+### File Input
 
-- This program accepts a file with names and phone numbers as **pipe-separated values**.
-- Each name/number pair is on its own line.
-- Format: name|number
+- This program accepts an optional file with names and phone numbers on **seperate lines**.
+- The first line is a name, the second line its phone number, the third a name, etc.
+- Make sure the file is named **"input.txt"**.
+- To simplify coding for this particular academic assignment, I utilized istream::getline which accepts a character array instead of a string. Since the buffer cannot be an unlimited size, __please ensure no line contains more than 256 characters__ or else extra characters will be ignored for that line.
 
-## Terminal Input
+### Terminal Input
 
 Type the number of the menu option you want, then follow the onscreen prompts. The menu will reappear when finished with that option.
 
