@@ -15,8 +15,7 @@
 
 ## Terminal Input
 
-- This program accepts one piece of information per line.
-- A name and phone number on the same line will be rejected.
+Type the number of the menu option you want, then follow the onscreen prompts. The menu will reappear when finished with that option.
 
 ## Name
 
@@ -33,7 +32,7 @@ _Vu_ is a real name with two characters. Any shorter is unreasonable.
 
 _Onwuatuegwu Anikulapo-Kuti Alamieyeseigha_ (41 characters, including two spaces). These three words are all common African **surnames**, not first names, but this is an extreme example that will be a little longer than a __reasonable number__ of chars for a name with a realistic first, middle, and last name.
 
-### Valid names
+### Sample of valid names
 
 - Ben Franklin
 - Vu
@@ -49,7 +48,7 @@ _Onwuatuegwu Anikulapo-Kuti Alamieyeseigha_ (41 characters, including two spaces
 - Smith, John, Michael
 - Onwuatuegwu Anikulapo-Kuti Alamieyeseigha
 
-### Invalid names
+### Sample of invalid names
 
 - Onwuatuegwuinteresting Anikulapo-Kuti Alamieyekhansecurity
 - _Leading Space
@@ -82,13 +81,13 @@ I had less time to polish the name regex since I created the phone number regex 
 
 ## Phone Number
 
-- Maximum of 22 characters per phone number. The program will reject the number otherwise.
+- Between 7 and 22 characters per phone number. The program will reject the number otherwise.
 - Leading spaces are forbidden.
 - Accepts numbers, up to one "+" (international dialling prefix), optional parenthesis for area code, characters resembling "extension" (ext, x...), and these other symbols in the following quotes: ".-/ "
 - Due to the whitelist nature of this regex, line terminators and other symbols/ASCII/unicode characters are not allowed.
 - Deny area codes 001, 555 (invalid) and 000 (telemarketer/VoIP). Deny country codes with only zeroes (invalid).
 
-### Valid Phone Numbers
+### Sample of valid phone numbers
 
 - 678-987-0933 xt4811
 - +13 (31) 345-3456
@@ -101,8 +100,9 @@ I had less time to polish the name regex since I created the phone number regex 
 - +254 65.2345.6547
 - (251)654 2345
 - 1-724-123-1234
+- 434-8827
 
-### Invalid Phone Numbers
+### Sample of invalid phone numbers
 
 - +0 123-45-67-89
 - (001)123-1234
@@ -114,6 +114,7 @@ I had less time to polish the name regex since I created the phone number regex 
 - Benjamin Franklin
 - +545 346 765 234 654 3456 345 4567 2345
 - 347589347573495783495743543538457458959
+- 123456
 
 ### Assumptions
 

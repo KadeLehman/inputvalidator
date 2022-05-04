@@ -83,10 +83,8 @@ void add(string& name, string& num) {
 		num = num.substr(0,MAX_NUM_CHARS);
 		if(validateNum(num)) { break; }
 	} while(true);
-	cout << num << "<-number returned" << endl;
 	
 	// Insert data into database
-	// TODO: try-catch block to prevent crash upon emplace error.
 	db.emplace(name,num);
 	cout << "Successfully inserted entry." << endl << endl;
 	return;
@@ -119,11 +117,10 @@ void deleteByNum(string& num) {
 		num = num.substr(0,MAX_NUM_CHARS);
 		if(validateNum(num)) { break; }
 	} while(true);
-	cout << num << "<-number returned" << endl;
 
 	for(auto& entry : db) {
 		if(entry.second == num) {
-			db.erase(entry.first); //maybe try setting a new temp string to this
+			db.erase(entry.first);
 			cout << "Successfully deleted entry." << endl << endl;
 			return;
 		}
@@ -156,7 +153,7 @@ bool validateName(string& name) {
 }
 
 bool validateNum(string& num) {
-	regex e("(?!.{23,})(?!\\s)\\+?\\(?(?!0{1,3}|001\\)|555|1[\\.\\-/ ]?555|1?[\\.\\-/ ]?800)\\d+\\)?(?:\\ ?\\(?[\\.\\-/ ]?\\d+\\)?)(?:[\\.\\-/ ]?\\d+){0,3}(?:[\\.\\-/ ]?(?:ext|ex|e|xt|x)?(?:[\\.\\-/ ]?\\d{1,4})?)?");
+	regex e("(?=.{7,})(?!.{23,})(?!\\s)\\+?\\(?(?!0{1,3}|001\\)|555|1[\\.\\-/ ]?555|1?[\\.\\-/ ]?800)\\d+\\)?(?:\\ ?\\(?[\\.\\-/ ]?\\d+\\)?)(?:[\\.\\-/ ]?\\d+){0,3}(?:[\\.\\-/ ]?(?:ext|ex|e|xt|x)?(?:[\\.\\-/ ]?\\d{1,4})?)?");
 	regex_constants::match_flag_type f = regex_constants::match_any | regex_constants::match_not_null;
 	bool matching = regex_match(num,e,f);
 	if(!matching) {
