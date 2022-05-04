@@ -115,6 +115,9 @@ void ingestFile() {
     }
     
     // Close file.
+    if(lineCounter == 0) {
+    	cout << "\"input.txt\" is in the project folder, but it is empty." << endl;
+    }
     cout << endl;
 	ifs.close();
 	return;
