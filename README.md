@@ -64,6 +64,10 @@ _Onwuatuegwu Anikulapo-Kuti Alamieyeseigha_ (41 characters, including two spaces
 - ,,,epic
 - a
 
+### Assumptions
+
+I assume that the user will enter the name as they intend. If they make a mistake and the name is accepted, then the user can simply view the database to check their typo or undesired name.
+
 ### Strengths
 
 As shown above, my name-regex accounts for several name formats, and it can detect dubious inputs easily.
@@ -111,12 +115,17 @@ I had less time to polish the name regex since I created the phone number regex 
 - +545 346 765 234 654 3456 345 4567 2345
 - 347589347573495783495743543538457458959
 
+### Assumptions
+
+- I assume that a user with honest intentions will enter the phone number as they intend. If they make a mistake and the number is accepted, then the user can simply view the database to check their typo or undesired phone number.
+- I also assume these: a user with dishonest intentions will enter a valid phone number that is not theirs, or they will attempt to supply invalid data to exploit the code.
+
 ### Strengths
 
 As shown above, my num-regex is quite flexible by accounting for U.S. and international phone number formats without allowing blatently dubious inputs. Also, it rejects false area codes that may be popular on television, but these are not in personal phone numbers.
 
 ### Drawbacks
 
-Even though I cover a good amount of ground, there are still some improvements that should be implemented.
-- Many invalid U.S. area codes for each "hundred" have not been checked for within the regex.
-- The user may not enter leading zeroes for the area code or country calling code, even though +001 is valid for the United States of America. This is due to keeping my regex on the simpler side and to reject 002-099 area codes (which also might be valid in countries other than the USA).
+When adding entries to the database, a dishonest user can enter valid phone numbers that are not owned by the corresponding names. Even though I cover a good amount of ground to reject invalid phone numbers, there are still some improvements to this that should be implemented.
+1. Many invalid U.S. area codes for each "hundred" have not been checked for within the regex.
+2. The user may not enter leading zeroes for the area code or country calling code, even though +001 is valid for the United States of America. This is due to keeping my regex on the simpler side and to reject 002-099 area codes (which also might be valid in countries other than the USA).

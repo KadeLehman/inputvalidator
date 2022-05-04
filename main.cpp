@@ -70,15 +70,14 @@ void add(string& name, string& num) {
 		if(validateName(name)) { break; }
 	} while(true); */
 	
-	cout << "Please enter a name." << endl;
+	cout << endl << "Please enter a name." << endl;
 	do {
 		getline(cin,name);
 		name = name.substr(0,MAX_NAME_CHARS);
 		if(validateName(name)) { break; }
 	} while(true);
-	cout << name << "<-name returned" << endl;
 	
-	cout << "Please enter a phone number." << endl;
+	cout << endl << "Please enter a phone number." << endl;
 	do {
 		getline(cin,num);
 		num = num.substr(0,MAX_NUM_CHARS);
@@ -101,21 +100,35 @@ void deleteByName(string& name) {
 		name = name.substr(0,MAX_NAME_CHARS);
 		if(validateName(name)) { break; }
 	} while(true);
-	cout << name << "<-name returned" << endl;
 
 	unordered_map<string,string>::const_iterator got = db.find(name);
 	if(got == db.end()) {
-		cout << "Name not found. Please enter the name exactly as displayed in the database." << endl;
+		cout << "Name not found. Please enter the name exactly as displayed in the database." << endl << endl;
 	}
 	else {
 		db.erase(name);
-		cout << "Successfully deleted entry." << endl;
+		cout << "Successfully deleted entry." << endl << endl;
 	}
 	return;
 }
 
 void deleteByNum(string& num) {
-	//TODO
+	cout << "Please enter the phone number for the entry you wish to delete." << endl;
+	do {
+		getline(cin,num);
+		num = num.substr(0,MAX_NUM_CHARS);
+		if(validateNum(num)) { break; }
+	} while(true);
+	cout << num << "<-number returned" << endl;
+
+	for(auto& entry : db) {
+		if(entry.second == num) {
+			db.erase(entry.first); //maybe try setting a new temp string to this
+			cout << "Successfully deleted entry." << endl << endl;
+			return;
+		}
+	}
+	cout << "Phone number not found. Please enter the phone number exactly as displayed in the database." << endl << endl;
 	return;
 }
 
