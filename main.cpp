@@ -143,14 +143,14 @@ void add(string& name, string& num) {
 	
 	// Insert data into database.
 	db.emplace(name,num);
-	cout << "Successfully inserted entry." << endl << endl;
+	cout << endl << "Successfully inserted entry." << endl << endl;
 	return;
 }
 
 void deleteByName(string& name) {
 
 	// Ask user to enter name.
-	cout << "Please enter the name for the entry you wish to delete." << endl;
+	cout << endl << "Please enter the name for the entry you wish to delete." << endl;
 	do {
 		getline(cin,name);
 		name = name.substr(0,MAX_NAME_CHARS);
@@ -164,7 +164,7 @@ void deleteByName(string& name) {
 	}
 	else {
 		db.erase(name);
-		cout << "Successfully deleted entry." << endl << endl;
+		cout << endl << "Successfully deleted entry." << endl << endl;
 	}
 	return;
 }
@@ -172,7 +172,7 @@ void deleteByName(string& name) {
 void deleteByNum(string& num) {
 
 	// Ask user to enter phone number.
-	cout << "Please enter the phone number for the entry you wish to delete." << endl;
+	cout << endl << "Please enter the phone number for the entry you wish to delete." << endl;
 	do {
 		getline(cin,num);
 		num = num.substr(0,MAX_NUM_CHARS);
@@ -183,7 +183,7 @@ void deleteByNum(string& num) {
 	for(auto& entry : db) {
 		if(entry.second == num) {
 			db.erase(entry.first);
-			cout << "Successfully deleted entry." << endl << endl;
+			cout << endl << "Successfully deleted entry." << endl << endl;
 			return;
 		}
 	}
