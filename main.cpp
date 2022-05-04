@@ -21,7 +21,8 @@ bool validateNum(string& num, bool fromFile);
 
 int main()
 {
-	// Read file and show menu.
+	// Ingest file and activate menu.
+	cout << endl;
 	ingestFile();
 	string name("");
 	string num("");
@@ -69,7 +70,7 @@ void ingestFile() {
 	// Attempt to open file.
 	ifstream ifs("input.txt");
 	if(!ifs.is_open()) {
-		cout << endl << "No file named \"input.txt\" found." << endl << endl;
+		cout << "No file named \"input.txt\" found." << endl << endl;
 		return;
 	}
 	
@@ -107,13 +108,14 @@ void ingestFile() {
 		
 		// If valid, insert pair into database
 		if(pairValid) {
-			cout << "Lines " << lineCounter-1 << " and " << lineCounter << " passed." << endl;
+			cout << "Lines " << lineCounter-1 << "-" << lineCounter << " passed." << endl;
 			db.emplace(name,num);
 		}
 		pairValid = true;
     }
     
     // Close file.
+    cout << endl;
 	ifs.close();
 	return;
 }
