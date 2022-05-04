@@ -77,14 +77,19 @@ void ingestFile() {
 	char str[256];
 	bool nameToken(true);
 	bool pairValid(true);
+	int lineCounter = 0;
+	string name("");
+	string num("");
     while (ifs.getline(str, 256)) {
+    	
+    	lineCounter++;
     
     	// Attempt name input.
-    	string name(str);
     	if(nameToken) {
+    		name = str;
 			name = name.substr(0,MAX_NAME_CHARS);
 			if(!validateName(name,true)) {
-				cout << "Line n failed." << endl;
+				cout << "Line " << lineCounter << " failed." << endl;
 				pairValid = false;
 			}
 			nameToken = !nameToken;
@@ -92,17 +97,17 @@ void ingestFile() {
 		}
 		
 		// Attempt number input.
-		string num(str);
+		num = str;
 		num = num.substr(0,MAX_NUM_CHARS);
 		if(!validateNum(num,true)) {
-			cout << "Line n failed validation." << endl;
+			cout << "Line " << lineCounter << " failed." << endl;
 			pairValid = false;
 		}
 		nameToken = !nameToken;
 		
 		// If valid, insert pair into database
 		if(pairValid) {
-			cout << "Line n passed." << endl;
+			cout << "Lines " << lineCounter-1 << " and " << lineCounter << " passed." << endl;
 			db.emplace(name,num);
 		}
 		pairValid = true;
